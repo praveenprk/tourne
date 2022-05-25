@@ -8,6 +8,8 @@
 /.bundle
 # /test
 
+*
+
 # .gitignore
 # config.ru
 
