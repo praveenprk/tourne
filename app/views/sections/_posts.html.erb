@@ -1,0 +1,21 @@
+<div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+<h3 class="text-center">Your Posts</h3>
+<div class="card mb-3" style="width:400px">
+<% @user.feeds.each do |p| %>
+        <div class="card-body">
+            <h5 class="card-title"><%= get_name(p.user_id) %></h5>
+            <p class="card-text"><%= p.location %></p>
+            <p class="card-text"><%= p.text_post %></p>
+            <p class="card-text badge bg-primary"><%= p.created_at.to_fs(:long) %></p>
+        </div>
+        <ul class="d-flex flex-row" style="list-style-type: none;">
+            <li>
+            <%= link_to "Like" %>
+            </li>
+            &nbsp;
+            <li><%= link_to "Comment" %></li>
+        </ul>
+        <hr>
+        <%end%>
+    </div>
+</div>

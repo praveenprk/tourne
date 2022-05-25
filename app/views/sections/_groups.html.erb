@@ -1,0 +1,19 @@
+<div class="row mt-5">
+    <% @user.groups.each do |group| %>
+    <div class="col-4">
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= group.name %></h5>
+            <p class="card-text"><%= group.description %></p>
+            <p class="card-text"><%= group.about %></p>
+            <p class="badge bg-warning text-dark"> 📍  <%= group.for_place %></p>
+            <% if group.is_professional === true %>
+                <span class="badge bg-info text-dark">Professional🕴</span>
+            <%end%>
+            <br>
+            <a class="btn btn-sm btn-info text-white" href="/groups/<%= group.id %>">See Group</a>
+        </div>
+    </div>
+    </div>
+    <%end%>
+</div>

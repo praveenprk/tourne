@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title"><%= @group.name %></h1>
+    <h3 class="card-text"><%= @group.description %></h3>
+    <p class="card-text"><%= @group.about %></p>
+    <p class="card-text"> 📍  <%= @group.for_place %></p>
+    <% if @group.is_professional === true %>
+        <span class="badge bg-info text-dark">Professional🕴</span>
+    <%end%>
+    <%
+=begin%>
+ <%= button_to "Join Now", @groups_path, class: "btn btn-info" %> 
+<%
+=end%>
+  </div>
+</div>

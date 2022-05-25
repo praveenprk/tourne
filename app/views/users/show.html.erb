@@ -1,0 +1,48 @@
+<div class="mt-4 p-5 bg-primary text-white rounded">
+
+  <div class="row">
+    
+    <div class="col-6">
+        <h1><%= @user.firstname %></h1>
+        <h3><%= @user.lastname %></h3>
+    </div>
+    <div class="col-4">
+        <h4>
+            <%= @user.followers.count %> Followers
+        </h4>
+        <h4>
+            <%= @user.following.count %> Following
+        </h4>
+    </div>
+    <div class="col-2 m-auto">
+        <span>
+        <% if params[:id].to_i != current_user.id %>
+            <%= button_to 'Follow', user_friendships_path(@user) ,class: "btn btn-danger" unless @rel.present? %>
+            <%= button_to 'Unfollow', friendship_path(@rel.id), method: :delete, class: "btn btn-danger" if @rel.present? %>
+        <%end%>
+        </span>
+    </div>
+    
+    <%
+=begin%>
+ <% if current_user.id != params[:id].to_i %>
+    <div class="col-6">
+    <%=  %>
+    <% if req_sent %>
+        <%= button_to 'Pending', class: "btn btn-secondary disabled" %>
+    <%else%>
+        <%= button_to 'Invite', user_friends_path(params[:id]), class: "btn btn-primary" %>
+    <%end%>
+    </div>
+    <%end%> 
+<%
+=end%>
+    <div>
+  </div>
+  
+  </div>
+
+</div>
+<%= render "sections/groups" %>
+<%= render "sections/posts" %>
+

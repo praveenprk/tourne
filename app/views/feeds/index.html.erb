@@ -1,0 +1,31 @@
+<%= form_with model: @feed, url: user_feeds_path(current_user.id) do |f| %>
+    <%= f.text_area :text_post, class: "form-control", placeholder: "What's on your mind?" %><br>
+    <%= f.file_field :post_attachment, class: "form-control" %><br>
+    <%= f.text_field :location, class: "form-control", placeholder: "Where are you right now?" %><br>
+    <%= f.hidden_field :user_id, value: current_user.id %><br>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+
+
+<div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+<h3 class="text-center">Recent Updates</h3>
+<div class="card mb-3" style="width:400px">
+<% all_posts.each do |p| %>
+        <div class="card-body">
+            <h5 class="card-title"><%= get_name(p.user_id) %></h5>
+            <h5 class="card-title"><%= p.user_id %></h5>
+            <p class="card-text"><%= p.location %></p>
+            <p class="card-text"><%= p.text_post %></p>
+            <p class="card-text badge bg-primary"><%= p.created_at.to_fs(:long) %></p>
+        </div>
+        <ul class="d-flex flex-row" style="list-style-type: none;">
+            <li>
+            <%= link_to "Like" %>
+            </li>
+            &nbsp;
+            <li><%= link_to "Comment" %></li>
+            </ul>
+        <hr>
+            <%end%>
+    </div>
+</div>

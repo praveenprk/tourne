@@ -1,0 +1,25 @@
+<div class="row d-flex justify-content-center align-items-center">
+<h1 class="col-auto">Sign Up</h1>
+<%= form_with model: @user do |form| %>
+<%= form.label :firstname, "First Name"  %>
+<%= form.text_field :firstname, class: 'form-control' %>
+<%= form.label :lastname, "Last Name" %>
+<%= form.text_field :lastname, class: 'form-control' %>
+<%= form.label :email, "E-Mail" %>
+<%= form.email_field :email, class: 'form-control' %>
+<%= form.label :password, "Password" %>
+<%= form.password_field :password, class: 'form-control' %><br>
+<%= form.label :sex, "Sex" %>
+<%= form.text_field :sex, class: 'form-control' %>
+<%
+=begin%>
+ <%= form.label :gender, "Gender" %><br/>
+<%= form.radio_button :email, 'male' %> Male<br />
+<%= form.radio_button :email, 'female' %> Female<br />
+<%= form.radio_button :email, 'others' %> others<br />
+<%= form.hidden_field :email  %><br> 
+<%
+=end%>
+<%= form.submit "Register", class: "btn btn-secondary" %>
+<%  end %>
+</div>
