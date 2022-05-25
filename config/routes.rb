@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   
   resources :sessions, only: [:index]
   resources :friendships, only: [:destroy]
-  resources :profiles, only: [:edit]
+  # resources :profiles, only: [:edit]
   
   get "/feeds", to: "feeds#index"
   get "/login", to: "sessions#new"
@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   get "/groups", to: "groups#main"
   get "/groups/all", to: "groups#index"
   get "groups/:id", to: "groups#show"
-  # get "/users/:user_id/profiles/edit", to: "profiles#edit"
-
+  get "/users/:user_id/profiles/edit", to: "profiles#edit", as: "edit_profile"
 
   root "mainpage#index"
 end

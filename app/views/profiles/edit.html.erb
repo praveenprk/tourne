@@ -1,7 +1,5 @@
-<%
-=begin%>
- <h1>Edit Profile Form</h1>
-<%= form_with model: @profile, url: edit_profile(current_user.id) do |f| %>
+<h1>Edit Profile Form</h1>
+<%= form_with model: @profile, url: edit_profile_path(current_user.id) do |f| %>
 <%= f.label :dob, "Birthday" %>
 <%= f.date_field :dob, class: "form-control" %>
 <%= f.label :bio, "Bio" %>
@@ -12,5 +10,3 @@
 <%= f.text_field :hobbies, class: "form-control" %><br>
 <%= f.submit "Save Profile", class: "btn btn-primary" %>
 <%end%> 
-<%
-=end%>

@@ -27,6 +27,13 @@ class ProfilesController < ApplicationController
     end
 
     def update
+        @profile = Profile.find_by(user_id: current_user.id)
+
+        if @profile.update(profile_params)
+            redirect_to feeds_path
+        else
+            flash[:alert] = "Failed to update"
+        end
     
     end
 
