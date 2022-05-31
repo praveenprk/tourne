@@ -1,8 +1,10 @@
 <% #if @user.profile.present? %>
-<h1>Edit Profile Form</h1>
+<h1>Add Profile Form</h1>
 <%= form_with model: @profile, url: user_profiles_path(current_user.id) do |f| %>
 <%= f.label :dob, "Birthday" %>
 <%= f.date_field :dob, class: "form-control" %>
+<%= f.label :avatar, "Avatar" %>
+<%= f.file_field :avatar, class: "form-control" %>
 <%= f.label :bio, "Bio" %>
 <%= f.text_field :bio, class: "form-control" %>
 <%= f.label :address, "Current Location" %>
