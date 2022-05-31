@@ -9,8 +9,11 @@
 <%= form.email_field :email, class: 'form-control' %>
 <%= form.label :password, "Password" %>
 <%= form.password_field :password, class: 'form-control' %><br>
-<%= form.label :sex, "Sex" %>
-<%= form.text_field :sex, class: 'form-control' %>
+<%= form.label :sex, "Sex" %><br>
+<%= form.radio_button :sex, 'male' %> male<br />
+<%= form.radio_button :sex, 'female'  %> Female<br />
+<%= form.radio_button :sex, 'others'  %> others<br />
+
 <%
 =begin%>
  <%= form.label :gender, "Gender" %><br/>
