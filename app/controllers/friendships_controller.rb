@@ -1,4 +1,10 @@
 class FriendshipsController < ApplicationController
+    
+    def index
+        @my_followers = Friendship.where(followed_id: current_user.id)
+        @my_followings = Friendship.where(follower_id: current_user.id)
+    end
+
     def create
         @other_user = User.find(params[:user_id])
         @rel = Friendship.create(follower_id: current_user.id, followed_id: @other_user.id)
