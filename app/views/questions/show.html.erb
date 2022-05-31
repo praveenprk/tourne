@@ -1,0 +1,11 @@
+<h1><%= @question.question %></h1>
+<div class="d-flex flex-row gap-2">
+    <span class="badge rounded-pill text-bg-primary">Asked on: <%= @question.created_at.to_fs(:long) %> | By: <%= get_name(@question.user_id) %></span><br>
+</div>
+<hr>
+    <% @question.answers.each do |answer| %>
+    <p><%= answer.answer %></p>
+<div class="d-flex flex-row gap-2">
+    <span class="badge rounded-pill text-bg-primary">Answered by: <%= get_name(answer.user_id)  %> | On: <%= answer.created_at.to_fs(:short) %></span><br>
+</div>
+<%end%>
