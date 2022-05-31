@@ -1,0 +1,17 @@
+<h1>My Followers</h1>
+<ul class="list-group">
+<% @my_followers.each do |follower| %>
+    <li class="list-group-item"><%= get_name(follower.follower_id).capitalize %></li>
+<%end%>
+</ul>
+
+<br>
+<hr>
+<br>
+
+<h1>My Followings</h1>
+<ul class="list-group">
+<% @my_followings.each do |following| %>
+    <li class="list-group-item"><%= get_name(following.followed_id).capitalize %></li>
+<%end%>
+</ul>
