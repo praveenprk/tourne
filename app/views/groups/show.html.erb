@@ -1,16 +1,20 @@
-<div class="card">
+<div class="card d-flex flex-row">
   <div class="card-body">
     <h1 class="card-title"><%= @group.name %></h1>
     <h3 class="card-text"><%= @group.description %></h3>
     <p class="card-text"><%= @group.about %></p>
     <p class="card-text"> 📍  <%= @group.for_place %></p>
+    <%= image_tag @group.group_image, style: "display: block; width: 200px;" if @group.group_image.attached? %>
     <% if @group.is_professional === true %>
         <span class="badge bg-info text-dark">Professional🕴</span>
     <%end%>
-    <%
-=begin%>
- <%= button_to "Join Now", @groups_path, class: "btn btn-info" %> 
-<%
-=end%>
+    <%= link_to "Edit", edit_user_group_path(user_id: current_user.id, id: @group.id), class: "btn btn-sm btn-secondary text-white" if current_user.id == @group.user_id %>
+  </div>
+  <div class="card-body">
+  <%= button_to "Join Now", user_group_memberships_path(user_id: current_user.id, group_id: @group.id), class: "btn btn-info justify-content-center align-items-center" unless current_user.id == @group.user_id if !@group.group_members.where(user_id: current_user.id).exists? %>
+  <%= button_to get_group_membership_status, delete_membership_path(id: @group.id, user_id: current_user.id), method: :delete ,class: "btn btn-info justify-content-center align-items-center" if @group.group_members.where(user_id: current_user.id).exists? %>
   </div>
 </div>
+<br>
+<%= render "sections/showalljoinrequests" %>
+<%= render "sections/showallgroupmembers" %>
