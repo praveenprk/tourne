@@ -1,0 +1,6 @@
+<h1>Ask a Question</h1>
+<%= form_with model: @question, url: user_questions_path do |f| %>
+<%= f.label :question, "Question" %>
+<%= f.text_field :question, class: "form-control" %><br>
+<%= f.submit class: "btn btn-info text-white" %>
+<%end%>
