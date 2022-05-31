@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save!
-            flash.now[:notice] = "Sign Up Success."
-            redirect_to feeds_path
+            session[:user_id] = @user.id
+            redirect_to new_user_profile_path(session[:user_id])
         else
             render :edit
         end
