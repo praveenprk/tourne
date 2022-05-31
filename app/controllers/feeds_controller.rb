@@ -44,7 +44,7 @@ class FeedsController < ApplicationController
     private
     def feed_params
         # params.require(:feed).permit(:text_post,:post_attachment,:location, :user_id)
-        params.require(:feed).permit(:text_post,:post_attachment,:location)
+        params.require(:feed).permit(:text_post,:feed_image,:location)
     end
     
 end
