@@ -1,8 +1,9 @@
 <div class="mt-4 p-5 bg-primary text-white rounded">
 
   <div class="row">
-    
     <div class="col-6">
+        <%= image_tag @user.profile.avatar, style: "display: block; width: 200px;" if @user.profile.avatar.attached?  %>
+        <%= image_tag "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png", style: "display: block; width: 200px;" unless @user.profile.avatar.attached? %>
         <h1><%= @user.firstname %></h1>
         <h3><%= @user.lastname %></h3>
     </div>
@@ -22,27 +23,14 @@
         <%end%>
         </span>
     </div>
-    
-    <%
-=begin%>
- <% if current_user.id != params[:id].to_i %>
-    <div class="col-6">
-    <%=  %>
-    <% if req_sent %>
-        <%= button_to 'Pending', class: "btn btn-secondary disabled" %>
-    <%else%>
-        <%= button_to 'Invite', user_friends_path(params[:id]), class: "btn btn-primary" %>
-    <%end%>
-    </div>
-    <%end%> 
-<%
-=end%>
-    <div>
-  </div>
-  
+  <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "btn btn-warning text-white" if params[:id].to_i == current_user.id %>
   </div>
 
 </div>
+<br>
+&nbsp;
+<%= render "sections/profiletabs" %>
 <%= render "sections/groups" %>
 <%= render "sections/posts" %>
+
 
