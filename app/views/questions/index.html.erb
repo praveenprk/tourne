@@ -1,0 +1,12 @@
+<%= render "partials/qnanav" %> 
+<h1 class="text-center">Questions & Answers</h1>
+<hr>
+<div class="row">
+<div class="col-12">
+<% @questions.each do |q| %>
+<h3><%= link_to q.question, question_path(q) %></h3>
+<%= link_to "Answer", new_user_question_answer_path(user_id: current_user.id, question_id: q.id), class: "btn btn-danger" %><br>
+<span class="nav-link disabled">Asked on: <%= q.created_at.to_fs(:long) %> by: <%= get_name(q.user_id) %></span><br>
+<%end%>
+</div>
+</div>
