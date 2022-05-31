@@ -1,0 +1,8 @@
+<h1 class="text-center">Answer</h1>
+<h3><%= @question.question %></h3>
+<%= form_with model: @answer, url: user_question_answers_path(user_id: current_user.id, question_id: @question.id) do |f| %>
+<%= f.label :answer, "Answer" %>
+<%= f.text_area :answer, class: "form-control" %><br>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.submit "Answer" %>
+<%end%>
