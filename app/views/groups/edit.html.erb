@@ -1,0 +1,18 @@
+<h1>Edit <%= @group.name %> </h1>
+<%= form_with model: @group, url: user_group_path(user_id: current_user.id, id: @group.id) do |f| %>
+    <%= f.label :group_name, "Group Name" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description, class: "form-control" %>
+    <%= f.label :member_limit, "Member Limit" %>
+    <%= f.number_field :member_limit, class: "form-control" %>
+    <%= f.label :about, "About" %>
+    <%= f.text_area :about, class: "form-control" %><br>
+    <%= f.label :group_image, "Group Avatar" %>
+    <%= f.file_field :group_image, class: "form-control" %><br>
+    <%= f.label :for_place, "Excited For Place" %>
+    <%= f.text_field :for_place, class: "form-control" %><br>
+    <%= f.label :professional, "Is this a professional trip?" %>
+    <%= f.check_box :is_professional %><br>
+    <%= f.submit "Update Group", class: "btn btn-primary" %>
+<%end%>
