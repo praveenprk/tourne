@@ -1,0 +1,18 @@
+<h3 class="text-center">Group Members</h3>
+<div class="row">
+<div class="col-4">
+<% @group_members.each do |group| %>
+<% if group.status == 'accepted' %>
+<div class="card" style="width:400px">
+  <div class="card-body">
+    <h4 class="card-title">
+    <%= get_user_info_invitations(group.user_id).firstname %> <%= get_user_info_invitations(group.user_id).lastname %>
+    <%= button_to "Remove", remove_from_group_path(id: group.id,), method: :delete ,class: "btn btn-info justify-content-center align-items-center" %>
+    </h4>
+    <span class="badge bg-primary"><%= "Joined on: " +  group.updated_at.to_fs(:long) %></span>
+  </div>
+</div>
+<%end%>
+<%end%>
+</div>
+</div>

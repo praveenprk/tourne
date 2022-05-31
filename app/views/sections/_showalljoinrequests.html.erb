@@ -1,0 +1,12 @@
+<% if @group.user_id == current_user.id %>
+<h1 class="text-center">Group Join Requests</h1>
+<% @group_members.each do |group| %>
+<% if group.status == 'pending' %>
+<%= get_user_info_invitations(group.user_id).firstname %>
+<%= button_to "Accept", accept_membership_request_path(id: group.id, user_id: group.user_id, group_id: group.group_id), method: :patch unless group.status == "accepted" %>
+<% else %>
+<h3 class="text-center">No Request now...</h3>
+<% end %>
+<%end%>
+<%end%>
+<br>

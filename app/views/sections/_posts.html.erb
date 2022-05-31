@@ -6,11 +6,16 @@
             <h5 class="card-title"><%= get_name(p.user_id) %></h5>
             <p class="card-text"><%= p.location %></p>
             <p class="card-text"><%= p.text_post %></p>
+            <% if p.feed_image.attached? %>
+                <%= image_tag p.feed_image, style: "display: block; width: 200px;" %>
+            <% end %>
             <p class="card-text badge bg-primary"><%= p.created_at.to_fs(:long) %></p>
         </div>
+        <p class="text-center"><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes'%></p>
         <ul class="d-flex flex-row" style="list-style-type: none;">
             <li>
-            <%= link_to "Like" %>
+            <%= button_to 'Like', user_feed_likes_path(user_id: current_user.id, feed_id: p.id), method: :post if !p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
+            <%= button_to 'Unlike', user_feed_like_path(user_id: current_user.id, feed_id: p.id, id: p.likes.ids), method: :delete, remote: true if p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
             </li>
             &nbsp;
             <li><%= link_to "Comment" %></li>

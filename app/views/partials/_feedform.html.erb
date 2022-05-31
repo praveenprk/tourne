@@ -1,0 +1,7 @@
+<%= form_with model: @feed, url: user_feeds_path(current_user.id) do |f| %>
+    <%= f.text_area :text_post, class: "form-control", placeholder: "What's on your mind?" %><br>
+    <%= f.file_field :feed_image, class: "form-control" %><br>
+    <%= f.text_field :location, class: "form-control", placeholder: "Where are you right now?" %><br>
+    <%= f.hidden_field :user_id, value: current_user.id %><br>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
