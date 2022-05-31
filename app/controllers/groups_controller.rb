@@ -24,6 +24,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group_members = GroupMember.where(group_id: params[:id])
     if params[:search]
       @groups = Group.find_by(for_place: params[:search_place])
     else
@@ -33,14 +34,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  
-
   def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    
+    if @group.update(group_params)
+      redirect_to show_group_path(params[:id])
+    else
+      flash[:alert] = "Failed to update group"
+    end
   end
 
   private
   def group_params
-    params.require(:group).permit(:name, :description, :member_limit, :about, :is_professional, :for_place)
+    params.require(:group).permit(:name, :description, :member_limit, :about, :is_professional, :for_place, :group_image)
   end
 
 end
