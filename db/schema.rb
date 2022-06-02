@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_31_094713) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_01_131509) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,6 +49,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_094713) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "feed_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id", null: false
+    t.integer "feed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_feed_comments_on_feed_id"
+    t.index ["user_id"], name: "index_feed_comments_on_user_id"
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.text "text_post"
     t.string "post_attachment"
@@ -75,6 +85,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_094713) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_members_on_group_id"
     t.index ["user_id"], name: "index_group_members_on_user_id"
+  end
+
+  create_table "group_posts", force: :cascade do |t|
+    t.text "group_post"
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "current_location"
+    t.index ["group_id"], name: "index_group_posts_on_group_id"
+    t.index ["user_id"], name: "index_group_posts_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -132,9 +153,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_094713) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "feed_comments", "feeds"
+  add_foreign_key "feed_comments", "users"
   add_foreign_key "feeds", "users"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
+  add_foreign_key "group_posts", "groups"
+  add_foreign_key "group_posts", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "likes", "feeds"
   add_foreign_key "likes", "users"
