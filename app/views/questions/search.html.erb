@@ -1,0 +1,11 @@
+<% if !@results.empty? %>
+<% @results.each do |q| %>
+    <h3><%= q.question %></h3>
+    <% q.answers.each do |ans| %>
+       <p><%= ans.answer %></p>
+       <span>Answered on:&nbsp;<%= ans.created_at.to_fs(:short) %></span>
+    <%end%>
+<%end%>
+<%else%>
+<p>No results found</p>
+<%end%>
