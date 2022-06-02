@@ -1,5 +1,9 @@
-<%= render "partials/qnanav" %> 
+<%= render "partials/qnanav" %>
 <h1 class="text-center">Questions & Answers</h1>
+<hr>
+<%=form_tag(question_search_path,:method=>"get") do%>
+<%= search_field_tag :q, params[:q], placeholder:"Search question", class: "form-control text-center" %>
+<% end %>
 <hr>
 <div class="row">
 <div class="col-12">
