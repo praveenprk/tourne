@@ -6,6 +6,16 @@ class GroupsController < ApplicationController
   def main
     render :main
   end
+
+  def search
+      if params[:q].blank?
+          respond_to groups_path and return
+      else
+          @parameter= params[:q].downcase
+          @results_for_name = Group.all.where("lower(name) LIKE :search", search:"%#{@parameter}%")
+          @results_for_place = Group.all.where("lower(for_place) LIKE :search", search:"%#{@parameter}%")
+      end
+  end
   
   def new
     @group = Group.new
@@ -25,13 +35,7 @@ class GroupsController < ApplicationController
 
   def show
     @group_members = GroupMember.where(group_id: params[:id])
-    if params[:search]
-      @groups = Group.find_by(for_place: params[:search_place])
-    else
-      @group = Group.find(
-        params[:id]
-        )
-    end
+    @group = Group.find(params[:id])
   end
 
   def edit
