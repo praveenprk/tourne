@@ -7,6 +7,19 @@ class QuestionsController < ApplicationController
         @question = Question.find(params[:id])
     end
 
+    def my_questions
+        @questions = Question.where(user_id: params[:user_id])
+    end
+
+    def search
+        if params[:q].blank?
+            respond_to questions_path and return
+        else
+            @parameter= params[:q].downcase
+            @results = Question.all.where("lower(question) LIKE :search", search:"%#{@parameter}%")
+        end
+    end
+
     def new
         @question = Question.new
     end

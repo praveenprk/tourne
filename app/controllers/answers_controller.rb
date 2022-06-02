@@ -1,5 +1,8 @@
 class AnswersController < ApplicationController
     def index
+    end
+
+    def show
     
     end
 
@@ -18,11 +21,17 @@ class AnswersController < ApplicationController
     end
 
     def edit
+        @question = Question.find(params[:question_id])
         @answer = Answer.find(params[:id])
     end
 
     def update
-    
+        @answer = Answer.find(params[:id])
+        
+        if @answer.update(answer_params)
+            flash[:alert] = "Answer updated"
+            redirect_to question_path(params[:question_id])
+        end
     end
 
     private
