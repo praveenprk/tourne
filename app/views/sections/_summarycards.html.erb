@@ -1,0 +1,37 @@
+<br>
+<div class="d-flex flex-row gap-5">
+
+<div class="card" style="width: 20rem;">
+  <div class="card-header">
+    Recent Posts
+  </div>
+  <ul class="list-group px-5 pt-5 pb-5 list-group-flush" style="list-style-type: none;">
+    <% @user.feeds.limit(3).each do |f| %>
+        <li><%= link_to f.text_post, show_feed_path(f.id)  %></li>
+    <%end%>
+  </ul>
+</div>
+
+<div class="card" style="width: 20rem;">
+  <div class="card-header">
+    Connections
+  </div>
+  <ul class="list-group px-5 pt-5 pb-5 list-group-flush" style="list-style-type: none;">
+    <% connections.limit(5).each do |c| %>
+        <li><%= link_to get_name(c.follower_id), user_path(c.follower_id) %></li>
+    <%end%>
+</ul>
+</div>
+
+<div class="card" style="width: 20rem;">
+  <div class="card-header">
+    Groups
+  </div>
+  <ul class="list-group px-5 pt-5 pb-5 list-group-flush" style="list-style-type: none;">
+    <% @user.groups.limit(3).each do |g| %>
+        <li><%= g.name %></li>
+    <%end%>
+</ul>
+</div>
+
+</div>
