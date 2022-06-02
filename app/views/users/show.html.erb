@@ -29,7 +29,8 @@
 </div>
 <br>
 &nbsp;
-<%= render "sections/profiletabs" %>
+<%= render "sections/profiletabs" if current_user.id == params[:id].to_i %>
+<%= render "sections/summarycards" %>
 <%= render "sections/groups" %>
 <%= render "sections/posts" %>
 
