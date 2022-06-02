@@ -7,7 +7,7 @@
   <div class="card-body">
     <h4 class="card-title">
     <%= get_user_info_invitations(group.user_id).firstname %> <%= get_user_info_invitations(group.user_id).lastname %>
-    <%= button_to "Remove", remove_from_group_path(id: group.id,), method: :delete ,class: "btn btn-info justify-content-center align-items-center" %>
+    <%= button_to "Remove", remove_from_group_path(id: group.id,), method: :delete ,class: "btn btn-info btn-sm justify-content-center align-items-center" unless @group.user_id != current_user.id %>
     </h4>
     <span class="badge bg-primary"><%= "Joined on: " +  group.updated_at.to_fs(:long) %></span>
   </div>
