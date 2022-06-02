@@ -1,0 +1,9 @@
+<% unless feed.feed_comments.empty? %>
+    <% feed.feed_comments.reverse_each do |c| %>
+        <% if c.user_id %>
+            <p><%= get_name c.user_id %> says...</p>
+            <p><%= c.comment %></p>
+            <%= button_to "Delete", delete_comment_path(c), method: :delete %>
+        <%end%>
+    <%end%>
+<%end%>
