@@ -1,0 +1,23 @@
+<div class="card mb-3" style="width:400px">
+        <div class="card-body">
+            <h5 class="card-title"><%= get_name(@feed.user_id) %></h5>
+            <p class="card-text"><%= @feed.location %></p>
+            <p class="card-text"><%= @feed.text_post %></p>
+            <% if @feed.feed_image.attached? %>
+                <%= image_tag @feed.feed_image, style: "display: block; width: 200px;" %>
+            <% end %>
+            <p class="card-text badge bg-primary"><%= @feed.created_at.to_fs(:long) %></p>
+        </div>
+        <p class="text-center"><%= @feed.likes.count %> <%= (@feed.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+        <ul class="d-flex flex-column" style="list-style-type: none;">
+            <li>
+            <%= button_to 'Like', user_feed_likes_path(user_id: current_user.id, feed_id: @feed.id), method: :post, remote: true if !@feed.likes.where(feed_id: @feed.id, user_id: current_user.id).exists? %>
+            <%= button_to 'Unlike', user_feed_like_path(user_id: current_user.id, feed_id: @feed.id, id: @feed.likes.ids), method: :delete, remote: true if @feed.likes.where(feed_id: @feed.id, user_id: current_user.id).exists? %>
+            </li>
+            &nbsp;
+            <%= render "partials/commentform", feed: @feed %>
+            <%= render "sections/showpostcomments", feed: @feed %>
+        </ul>
+        <hr>
+    
+</div>
