@@ -1,4 +1,10 @@
 class Group < ApplicationRecord
+
+    validates :name, presence: true
+    validates :description, presence: true, length: { maximum: 500 }
+    validates :member_limit, presence: true, numericality: { only_integer: true, greater_than: 0 }
+    validates :about, presence: true, length: { maximum: 2000 }
+
     #a group has many users
     # has_one :user
     has_many :group_members
