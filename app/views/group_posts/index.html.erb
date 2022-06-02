@@ -1,0 +1,18 @@
+<%= link_to "New Post", new_group_post_path, class: "btn btn-success btn-sm" %>
+
+<div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
+<h3 class="text-center">Recent group updates</h3>
+<div class="card mb-3" style="width:400px">
+<% @group_posts.reverse_each do |p| %>
+    <div class="card-body">
+            <h5 class="card-title"><%= get_name(p.user_id) %></h5>
+            <p class="card-text"><%= p.group_post %></p>
+            <p class="badge bg-dark">📍<%= p.current_location %></p>
+            <% if p.group_post_attachment.attached? %>
+                <%= image_tag p.group_post_attachment, style: "display: block; width: 200px;" %>
+            <% end %>
+            <p class="card-text badge bg-primary"><%= p.created_at.to_fs(:long) %></p>
+    </div>
+<%end%>
+</div>
+</div>
