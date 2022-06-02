@@ -1,0 +1,9 @@
+<h1>Add New Post in Group</h1>
+<%= form_with model: @group_post, url: user_group_group_posts_path(user_id: current_user.id, group_id: params[:id] ) do |f| %>
+    <%= f.text_area :group_post, placeholder: "What's the group update...", class: "form-control" %><br>
+    <%= f.file_field :group_post_attachment %><br><br>
+    <%= f.text_field :current_location, placeholder: "Where are you right now?", class: "form-control" %>
+    <%= f.hidden_field :user_id , value: current_user.id %><br>
+    <%= f.hidden_field :group_id, value: params[:id] %><br>
+    <%= f.submit "Post", disable_with: 'Posting...', class: "btn btn-success btn-sm" %>
+<%end%>
