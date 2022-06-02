@@ -2,8 +2,12 @@
 
 <div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
 <h3 class="text-center">Recent Updates</h3>
+<%=form_tag(loc_based_post_search_path,:method=>"get") do%>
+<%= search_field_tag :q, params[:q], placeholder:"Search post based on place", class: "form-control text-center" %>
+<% end %>
+<br>
 <div class="card mb-3" style="width:400px">
-<% all_posts.each do |p| %>
+<% all_posts.reverse_each do |p| %>
         <div class="card-body">
             <h5 class="card-title"><%= get_name(p.user_id) %></h5>
             <p class="card-text"><%= p.location %></p>
@@ -14,15 +18,16 @@
             <p class="card-text badge bg-primary"><%= p.created_at.to_fs(:long) %></p>
         </div>
         <p class="text-center"><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes' %></p>
-        <ul class="d-flex flex-row" style="list-style-type: none;">
+        <ul class="d-flex flex-column" style="list-style-type: none;">
             <li>
             <%= button_to 'Like', user_feed_likes_path(user_id: current_user.id, feed_id: p.id), method: :post, remote: true if !p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
             <%= button_to 'Unlike', user_feed_like_path(user_id: current_user.id, feed_id: p.id, id: p.likes.ids), method: :delete, remote: true if p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
             </li>
             &nbsp;
-            <%= button_to 'Comment' %>
-            </ul>
+            <%= render "partials/commentform", feed: p %>
+            <%= render "sections/showpostcomments", feed: p %>
+        </ul>
         <hr>
-            <%end%>
+    <%end%>
     </div>
 </div>
