@@ -12,6 +12,15 @@ class FeedsController < ApplicationController
         @feed = Feed.find(params[:id])
     end
 
+    def search
+        if params[:q].blank?
+            respond_to feeds_path and return
+        else
+            @parameter= params[:q].downcase
+            @results = Feed.all.where("lower(location) LIKE :search", search:"%#{@parameter}%")
+        end
+    end
+
     def new
         @users = User.all
     end
