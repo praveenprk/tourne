@@ -16,5 +16,12 @@
   </div>
 </div>
 <br>
+<%= link_to "New Post", new_group_post_path, class: "btn btn-success btn-sm" if @group.user_id == current_user.id %>
+<br>
 <%= render "sections/showalljoinrequests" %>
 <%= render "sections/showallgroupmembers" %>
+<% @group_members.each do |g| %>
+<% if g.user_id == current_user.id || g.status == "accepted" || @group.user_id == current_user.id %>
+  <%= link_to "View Group Activity", show_group_posts_path %>
+<%end%>
+<%end%>
