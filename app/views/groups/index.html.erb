@@ -1,11 +1,21 @@
 <!--<div class="d-flex flex-row w-100 h-100">-->
 <h1 class="text-center">View All Groups</h1>
+<div class="text-center">
+<%=form_tag(search_path,:method=>"get") do%>
+        <%= search_field_tag :q, params[:q], placeholder:"Which place you're excited to join?", class: "form-control text-center" %>
+        <%# <%= button_tag 'search', :name=>nil %>
+<% end %>
+<br>
+</div>
 <div class="row">
  <% @groups.each do |group| %>
 <div class="col-sm-6 mb-5">
     <div class="card">
     <div class="card-body">
         <h5 class="card-title"><%= group.name %></h5>
+        <% if group.group_image.attached? %>
+                <%= image_tag group.group_image, style: "display: block; width: 150px;" %>
+            <% end %>
         <p class="card-text"><%= group.description %></p>
         <a href="/groups/<%= group.id %>" class="btn btn-primary">View</a>
     </div>
