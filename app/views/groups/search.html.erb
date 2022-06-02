@@ -1,0 +1,32 @@
+<% if @results_for_name.count != 0 %>
+<h1 class="text-center">Showing <%=@results_for_name.count%> results for group name</h1>&nbsp;
+<% @results_for_name.each do |result| %>
+    <div class="col-sm-6 mb-5">
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= result.name %></h5>
+        <p class="card-text"><%= result.description %></p>
+        <a href="/groups/<%= result.id %>" class="btn btn-primary">View</a>
+    </div>
+    </div>
+</div>
+<%end%>
+<%end%>
+
+<% if @results_for_place.count != 0 %>
+<h1 class="text-center">Showing <%=@results_for_place.count%> results for group places</h1>&nbsp;
+<% @results_for_place.each do |result| %>
+    <div class="col-sm-6 mb-5">
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= result.name %></h5>
+        <p class="card-text"><%= result.description %></p>
+        <a href="/groups/<%= result.id %>" class="btn btn-primary">View</a>
+    </div>
+    </div>
+</div>
+<%end%>
+<%end%>
+
+
+
