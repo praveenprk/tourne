@@ -21,7 +21,6 @@ class GroupMembersController < ApplicationController
     end
 
     def show
-        
     end
 
     def remove_from_group
