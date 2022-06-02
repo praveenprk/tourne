@@ -6,6 +6,7 @@
     <% @question.answers.each do |answer| %>
     <p><%= answer.answer %></p>
 <div class="d-flex flex-row gap-2">
+    <%= link_to "Edit", edit_user_question_answer_path(user_id: answer.user_id , question_id: @question.id , id: answer.id) %>
     <span class="badge rounded-pill text-bg-primary">Answered by: <%= get_name(answer.user_id)  %> | On: <%= answer.created_at.to_fs(:short) %></span><br>
 </div>
 <%end%>
