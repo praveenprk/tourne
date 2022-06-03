@@ -29,7 +29,9 @@
   </div>
   <ul class="list-group px-5 pt-5 pb-5 list-group-flush" style="list-style-type: none;">
     <% @user.groups.limit(3).each do |g| %>
-        <li><%= g.name %></li>
+        <li>
+        <%= link_to g.name, show_group_path(g) %>
+        </li>
     <%end%>
 </ul>
 </div>
