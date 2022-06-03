@@ -1,21 +1,36 @@
-<div class="mt-4 p-5 bg-primary text-white rounded">
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <%= image_tag @user.profile.avatar, style: "display: block; width: 200px; border: 1px; border-radius: 50%;", class: "img-responsive" if @user.profile.avatar.attached?  %>
+      <%= image_tag "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png", style: "display: block; width: 200px;" unless @user.profile.avatar.attached? %>
+    </div>
+    <div class="col-md-4">
+      <div class="card-body">
 
-  <div class="row">
-    <div class="col-6">
-        <%= image_tag @user.profile.avatar, style: "display: block; width: 200px;" if @user.profile.avatar.attached?  %>
-        <%= image_tag "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png", style: "display: block; width: 200px;" unless @user.profile.avatar.attached? %>
-        <h1><%= @user.firstname %></h1>
-        <h3><%= @user.lastname %></h3>
+        <div class="d-flex flex-column">
+            <h3 class="card-title"><%= @user.firstname %>&nbsp;<%= @user.lastname %></h3>       
+            <p class="card-text">
+                🎂<%= @user.profile.dob.to_fs(:long) %>
+            </p>
+            <p><strong>Location:&nbsp;</strong><%= @user.profile.address %></p>
+        </div>
+      </div>
     </div>
-    <div class="col-4">
-        <h4>
-            <%= @user.followers.count %> Followers
-        </h4>
-        <h4>
-            <%= @user.following.count %> Following
-        </h4>
+
+    <div class="col-md-4">
+      <div class="card-body">
+      
+        <div class="d-flex flex-column">
+            <p class="card-text">
+                <strong>Bio:</strong>&nbsp;<%= @user.profile.bio %>
+            </p>
+        </div>
+        <br>
+        <p><strong>Hobbies:&nbsp;</strong><%= @user.profile.hobbies %></p>
+        <p><strong>Member since:&nbsp;</strong><%= @user.created_at.to_fs(:short) %></p>
+      </div>
     </div>
-    <div class="col-2 m-auto">
+    <div class="col-2 align-self-center">
         <span>
         <% if params[:id].to_i != current_user.id %>
             <%= button_to 'Follow', user_friendships_path(@user) ,class: "btn btn-danger" unless @rel.present? %>
@@ -23,9 +38,8 @@
         <%end%>
         </span>
     </div>
-  <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "btn btn-warning text-white" if params[:id].to_i == current_user.id %>
   </div>
-
+  <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "btn btn-warning text-white" if params[:id].to_i == current_user.id %>
 </div>
 <br>
 &nbsp;
