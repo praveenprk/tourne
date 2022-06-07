@@ -1,7 +1,7 @@
 class Feed < ApplicationRecord
 
   validates :text_post, presence: true
-  validates :loaction, presence: true
+  validates :location, presence: true
 
   has_one_attached :feed_image
   has_many :likes, dependent: :destroy
