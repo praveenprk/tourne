@@ -20,8 +20,8 @@
         <p class="text-center"><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes' %></p>
         <ul class="d-flex flex-column" style="list-style-type: none;">
             <li>
-            <%= button_to 'Like', user_feed_likes_path(user_id: current_user.id, feed_id: p.id), method: :post, remote: true if !p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
-            <%= button_to 'Unlike', user_feed_like_path(user_id: current_user.id, feed_id: p.id, id: p.likes.ids), method: :delete, remote: true if p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
+                <%= button_to 'Like', user_feed_likes_path(user_id: current_user.id, feed_id: p.id), method: :post, remote: true if !p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
+                <%= button_to 'Unlike', user_feed_like_path(user_id: current_user.id, feed_id: p.id, id: p.likes.ids), method: :delete, remote: true if p.likes.where(feed_id: p.id, user_id: current_user.id).exists? %>
             </li>
             &nbsp;
             <%= render "partials/commentform", feed: p %>

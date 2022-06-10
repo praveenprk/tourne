@@ -20,8 +20,9 @@
 <br>
 <%= render "sections/showalljoinrequests" %>
 <%= render "sections/showallgroupmembers" %>
-<% @group_members.each do |g| %>
-<% if g.user_id == current_user.id || g.status == "accepted" || @group.user_id == current_user.id %>
-  <%= link_to "View Group Activity", show_group_posts_path %>
-<%end%>
-<%end%>
+<%
+=begin%>
+ <%=if @group.group_members.user_id == current_user.id && g.status == "accepted" || @group.user_id == current_user.id %> 
+<%
+=end%>
+<%= link_to "View Group Activity", show_group_posts_path %>
